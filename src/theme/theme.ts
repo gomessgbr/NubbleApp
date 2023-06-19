@@ -1,6 +1,6 @@
 import {createTheme} from '@shopify/restyle';
 
-const palette = {
+export const palette = {
   greenPrimary: '#074C4E',
   greenPrimaryLight: '#EAF6F6',
   carrotSecondary: '#F86F2D',
@@ -36,8 +36,30 @@ export const theme = createTheme({
     success: palette.greenSuccess,
     successLight: palette.greenSuccessLight,
   },
-  spacing: {},
-  borderRadii: {},
+  spacing: {
+    s4: 4,
+    s8: 8,
+    s10: 10,
+    s12: 12,
+    s14: 14,
+    s16: 16,
+    s20: 20,
+    s24: 24,
+    s32: 32,
+    s40: 40,
+    s48: 48,
+    s56: 56,
+  },
+  borderRadii: {
+    s8: 8,
+    s12: 12,
+    s16: 16,
+  },
+
+  textVariants: {
+    defaults: {},
+  },
 });
 
 export type Theme = typeof theme;
+export type ThemeColors = keyof Theme['colors'];
