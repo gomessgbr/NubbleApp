@@ -6,7 +6,12 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {LoginScreen} from '../screens/auth/LoginScreen/LoginScreen';
 import {SignUpScreen} from '../screens/auth/SignUpScreen/SignUpScreen';
 
-const Stack = createNativeStackNavigator();
+type RootStackParamList = {
+  LoginScreen: undefined;
+  SignUpScreen: undefined;
+  SuccessScreen: undefined;
+};
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export function Router() {
   return (
