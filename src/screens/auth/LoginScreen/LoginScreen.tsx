@@ -4,6 +4,7 @@ import {Controller, useForm} from 'react-hook-form';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {Alert} from 'react-native';
 import {Button} from '../../../components/Button/Button';
+import {PasswordInput} from '../../../components/PasswordInput/PasswordInput';
 import {Screen} from '../../../components/Screen/Screen';
 import {Text} from '../../../components/Text/Text';
 import {TextInput} from '../../../components/TextInput/TextInput';
@@ -21,6 +22,7 @@ export function LoginScreen({navigation}: ScreenProps) {
       email: '',
       password: '',
     },
+    mode: 'onChange',
   });
   function navigateToSignUpScreen() {
     navigation.navigate('SignUpScreen');
@@ -29,7 +31,7 @@ export function LoginScreen({navigation}: ScreenProps) {
     navigation.navigate('ForgotPasswordScreen');
   }
   function submitForm({email, password}: LoginFormType) {
-    Alert.alert(`${email}`);
+    Alert.alert(`${email} ${password}`);
   }
 
   return (
@@ -40,9 +42,13 @@ export function LoginScreen({navigation}: ScreenProps) {
       <Text preset="paragraphLarge" mb="s40">
         Digite seu e-mail e senha para entrar
       </Text>
+
       <Controller
         control={control}
         name="email"
+        rules={{
+          required: 'E-mail obrigatório',
+        }}
         render={({field, fieldState}) => (
           <TextInput
             errorMessage={fieldState.error?.message}
@@ -55,11 +61,23 @@ export function LoginScreen({navigation}: ScreenProps) {
         )}
       />
 
-      {/* <PasswordInput
-        label="Senha"
-        placeholder="Digite sua senha"
-        boxProps={{mb: 's10'}}
-      /> */}
+      <Controller
+        control={control}
+        name="password"
+        rules={{
+          required: 'senha obrigatório',
+        }}
+        render={({field, fieldState}) => (
+          <PasswordInput
+            errorMessage={fieldState.error?.message}
+            value={field.value}
+            onChangeText={field.onChange}
+            label="Senha"
+            placeholder="Digite sua senha"
+            boxProps={{mb: 's10'}}
+          />
+        )}
+      />
 
       <Text
         onPress={navigateToForgotPassword}
