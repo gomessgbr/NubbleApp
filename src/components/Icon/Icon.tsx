@@ -1,7 +1,9 @@
-import {useAppTheme} from '@hooks';
-import {ThemeColors} from '@theme';
 import React from 'react';
 import {Pressable} from 'react-native';
+
+import {useAppTheme} from '@hooks';
+import {ThemeColors} from '@theme';
+
 import {ArrowLeftIcon} from '../../assets/icons/ArrowLeftIcon';
 import {ArrowRightIcon} from '../../assets/icons/ArrowRightIcon';
 import {BellIcon} from '../../assets/icons/BellIcon';
