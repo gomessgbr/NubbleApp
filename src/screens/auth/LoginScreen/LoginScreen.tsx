@@ -10,8 +10,7 @@ import {FormTextInput} from '../../../components/Form/FormTextInput';
 import {Screen} from '../../../components/Screen/Screen';
 import {Text} from '../../../components/Text/Text';
 import {RootStackParamList} from '../../../routes/Routes';
-
-import {LoginSchema, loginSchema} from './LoginSchema';
+import {LoginSchema, loginSchema} from './loginSchema';
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
 export function LoginScreen({navigation}: ScreenProps) {
