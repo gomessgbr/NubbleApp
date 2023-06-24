@@ -2,35 +2,31 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {Button} from '../../../components/Button/Button';
 
-import {Controller, useForm} from 'react-hook-form';
-import {PasswordInput} from '../../../components/PasswordInput/PasswordInput';
+import {zodResolver} from '@hookform/resolvers/zod';
+import {useForm} from 'react-hook-form';
+import {FormPasswordInput} from '../../../components/Form/FormPassowordInput';
+import {FormTextInput} from '../../../components/Form/FormTextInput';
 import {Screen} from '../../../components/Screen/Screen';
 import {Text} from '../../../components/Text/Text';
-import {TextInput} from '../../../components/TextInput/TextInput';
 import {useResetNavigationSuccess} from '../../../hooks/useResetNavigationSuccess';
 import {RootStackParamList} from '../../../routes/Routes';
-
-type SignUpFormType = {
-  username: string;
-  fullname: string;
-  email: string;
-  password: string;
-};
+import {SignUpSchema, signUpSchema} from './signUpSchema';
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'SignUpScreen'>;
 
 export function SignUpScreen({navigation}: ScreenProps) {
   const {reset} = useResetNavigationSuccess();
-  const {handleSubmit, control, formState} = useForm<SignUpFormType>({
+  const {handleSubmit, control, formState} = useForm<SignUpSchema>({
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
       username: '',
-      fullname: '',
+      fullName: '',
       email: '',
       password: '',
     },
     mode: 'onChange',
   });
-  function submitForm(formValue: SignUpFormType) {
+  function submitForm(formValue: SignUpSchema) {
     console.log(formValue);
     // reset({
     //   title: 'Sua Conta foi Criada com Sucesso',
@@ -46,69 +42,38 @@ export function SignUpScreen({navigation}: ScreenProps) {
       <Text preset="headingLarge" mb="s32">
         Criar uma conta
       </Text>
-      <Controller
+
+      <FormTextInput
         control={control}
         name="username"
-        rules={{required: 'Usuário é obrigatório'}}
-        render={({field, fieldState}) => (
-          <TextInput
-            value={field.value}
-            onChangeText={field.onChange}
-            errorMessage={fieldState.error?.message}
-            label="Seu username"
-            placeholder="@"
-            boxProps={{mb: 's20'}}
-          />
-        )}
+        label="Seu username"
+        placeholder="@"
+        boxProps={{mb: 's20'}}
       />
 
-      <Controller
+      <FormTextInput
         control={control}
-        name="fullname"
-        rules={{required: 'Nome obrigatório'}}
-        render={({field, fieldState}) => (
-          <TextInput
-            value={field.value}
-            onChangeText={field.onChange}
-            errorMessage={fieldState.error?.message}
-            label="Nome Completo"
-            placeholder="Digite seu nome completo"
-            boxProps={{mb: 's20'}}
-          />
-        )}
+        name="fullName"
+        label="Nome Completo"
+        placeholder="Digite seu nome completo"
+        boxProps={{mb: 's20'}}
       />
 
-      <Controller
+      <FormTextInput
         control={control}
         name="email"
-        rules={{required: 'Email obrigatório'}}
-        render={({field, fieldState}) => (
-          <TextInput
-            value={field.value}
-            onChangeText={field.onChange}
-            errorMessage={fieldState.error?.message}
-            label="E-mail"
-            placeholder="Digite seu e-mail"
-            boxProps={{mb: 's20'}}
-          />
-        )}
+        label="E-mail"
+        placeholder="Digite seu e-mail"
+        boxProps={{mb: 's20'}}
       />
 
-      <Controller
+      <FormPasswordInput
         control={control}
         name="password"
-        rules={{required: 'Senha obrigatório'}}
-        render={({field, fieldState}) => (
-          <PasswordInput
-            value={field.value}
-            onChangeText={field.onChange}
-            errorMessage={fieldState.error?.message}
-            label="Senha"
-            secureTextEntry
-            placeholder="Digite sua senha"
-            boxProps={{mb: 's48'}}
-          />
-        )}
+        label="Senha"
+        secureTextEntry
+        placeholder="Digite sua senha"
+        boxProps={{mb: 's48'}}
       />
 
       <Button
