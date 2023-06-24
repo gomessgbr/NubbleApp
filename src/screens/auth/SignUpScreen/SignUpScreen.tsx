@@ -8,14 +8,12 @@ import {FormPasswordInput} from '../../../components/Form/FormPassowordInput';
 import {FormTextInput} from '../../../components/Form/FormTextInput';
 import {Screen} from '../../../components/Screen/Screen';
 import {Text} from '../../../components/Text/Text';
-import {useResetNavigationSuccess} from '../../../hooks/useResetNavigationSuccess';
 import {RootStackParamList} from '../../../routes/Routes';
 import {SignUpSchema, signUpSchema} from './signUpSchema';
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'SignUpScreen'>;
 
 export function SignUpScreen({navigation}: ScreenProps) {
-  const {reset} = useResetNavigationSuccess();
   const {handleSubmit, control, formState} = useForm<SignUpSchema>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -28,14 +26,6 @@ export function SignUpScreen({navigation}: ScreenProps) {
   });
   function submitForm(formValue: SignUpSchema) {
     console.log(formValue);
-    // reset({
-    //   title: 'Sua Conta foi Criada com Sucesso',
-    //   description: 'Agora é só fazer login na nossa plataforma',
-    //   icon: {
-    //     name: 'checkRound',
-    //     color: 'success',
-    //   },
-    // });
   }
   return (
     <Screen canGoBack scrollable>
