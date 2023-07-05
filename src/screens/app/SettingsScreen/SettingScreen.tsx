@@ -1,12 +1,10 @@
 import React from 'react';
 
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {AppStackParamList} from 'src/routes/AppStack';
+import {AppScreenProps} from 'src/routes/navigationtype';
 
 import {Button, Screen, Text} from '@components';
 
-type ScreenProps = NativeStackScreenProps<AppStackParamList, 'SettingsScreen'>;
-export function SettingsScreen({}: ScreenProps) {
+export function SettingsScreen({}: AppScreenProps<'SettingsScreen'>) {
   return (
     <Screen canGoBack>
       <Text preset="headingLarge">Setting Screen</Text>
