@@ -3,7 +3,6 @@ import {Alert} from 'react-native';
 
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useForm} from 'react-hook-form';
-import {AuthScreenProps} from 'src/routes/navigationtype';
 
 import {
   Button,
@@ -12,6 +11,7 @@ import {
   Screen,
   Text,
 } from '@components';
+import {AuthScreenProps} from '@routes';
 
 import {LoginSchema, loginSchema} from './loginSchema';
 

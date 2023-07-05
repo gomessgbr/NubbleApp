@@ -2,10 +2,10 @@ import React from 'react';
 
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useForm} from 'react-hook-form';
-import {AuthScreenProps} from 'src/routes/navigationtype';
 
 import {Button, FormTextInput, Screen, Text} from '@components';
 import {useResetNavigationSuccess} from '@hooks';
+import {AuthScreenProps} from '@routes';
 
 import {
   ForgotPasswordSchema,

@@ -1,8 +1,7 @@
 import React from 'react';
 
-import {AppScreenProps} from 'src/routes/navigationtype';
-
 import {Button, Screen, Text} from '@components';
+import {AppScreenProps} from '@routes';
 
 export function SettingsScreen({}: AppScreenProps<'SettingsScreen'>) {
   return (
