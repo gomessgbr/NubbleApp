@@ -11,6 +11,9 @@ import {
 
 export type AppTabBottomTabParamList = {
   HomeScreen: undefined;
+  NewPostScreen: undefined;
+  FavoriteScreen: undefined;
+  MyProfileScreen: undefined;
 };
 const Tab = createBottomTabNavigator<AppTabBottomTabParamList>();
 
