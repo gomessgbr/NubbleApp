@@ -2,7 +2,7 @@ import React from 'react';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {IconProp} from '@components';
+import {IconProps} from '@components';
 import {
   ForgotPasswordScreen,
   LoginScreen,
@@ -16,7 +16,7 @@ export type AuthStackParamList = {
   SuccessScreen: {
     title: string;
     description: string;
-    icon: Pick<IconProp, 'name' | 'color'>;
+    icon: Pick<IconProps, 'name' | 'color'>;
   };
   ForgotPasswordScreen: undefined;
 };
