@@ -1,9 +1,19 @@
 import React from 'react';
 
-import {Button, Screen, Text} from '@components';
-import {AppScreenProps} from '@routes';
+import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
+import {CompositeScreenProps} from '@react-navigation/core';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {AppTabBottomTabParamList} from 'src/routes/AppTabNavigator';
 
-export function HomeScreen({navigation}: AppScreenProps<'HomeScreen'>) {
+import {Button, Screen, Text} from '@components';
+import {AppStackParamList} from '@routes';
+
+type AppTabScreenProps = CompositeScreenProps<
+  BottomTabScreenProps<AppTabBottomTabParamList, 'HomeScreen'>,
+  NativeStackScreenProps<AppStackParamList, 'AppTabNavigator'>
+>;
+
+export function HomeScreen({navigation}: AppTabScreenProps) {
   return (
     <Screen>
       <Text preset="headingLarge">Home Screen</Text>
