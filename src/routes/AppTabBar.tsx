@@ -33,7 +33,11 @@ export function AppTabBar({state, descriptors, navigation}: BottomTabBarProps) {
           });
 
           if (!isFocused && !event.defaultPrevented) {
-            navigation.navigate({name: route.name, merge: true});
+            navigation.navigate({
+              name: route.name,
+              params: route.params,
+              merge: true,
+            });
           }
         };
 
