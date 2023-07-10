@@ -3,13 +3,20 @@ import React from 'react';
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 
 import {Box, Icon, Text, TouchableOpacityBox} from '@components';
+import {useAppSafeArea} from '@hooks';
+import {$shadowProps} from '@theme';
 
 import {AppTabBottomTabParamList} from './AppTabNavigator';
 import {mapScreenToProps} from './mapScreenToProps';
 
 export function AppTabBar({state, descriptors, navigation}: BottomTabBarProps) {
+  const {bottom} = useAppSafeArea();
   return (
-    <Box flexDirection="row">
+    <Box
+      paddingTop="s12"
+      flexDirection="row"
+      backgroundColor="background"
+      style={[{paddingBottom: bottom}, $shadowProps]}>
       {state.routes.map((route, index) => {
         const {options} = descriptors[route.key];
 
@@ -39,6 +46,7 @@ export function AppTabBar({state, descriptors, navigation}: BottomTabBarProps) {
 
         return (
           <TouchableOpacityBox
+            key={index}
             activeOpacity={1}
             alignItems="center"
             accessibilityRole="button"
@@ -54,6 +62,7 @@ export function AppTabBar({state, descriptors, navigation}: BottomTabBarProps) {
             />
             <Text
               semiBold
+              mt="s4"
               preset="paragraphCaption"
               color={isFocused ? 'primary' : 'backgroundContrast'}>
               {tabItem.label}
