@@ -1,16 +1,22 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
-import {Button, Screen, Text} from '@components';
+import {Post, postService} from '@domain';
+
+import {Screen, Text} from '@components';
 import {AppTabScreenProps} from '@routes';
 
 export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
+  const [postList, setPostList] = useState<Post[]>([]);
+  console.log(navigation);
+  useEffect(() => {
+    postService.getList().then(list => setPostList(list));
+  }, []);
+
   return (
     <Screen>
-      <Text preset="headingLarge">Home Screen</Text>
-      <Button
-        title="Settings"
-        onPress={() => navigation.navigate('SettingsScreen')}
-      />
+      {postList.map(post => (
+        <Text>{post.text}</Text>
+      ))}
     </Screen>
   );
 }
