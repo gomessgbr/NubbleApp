@@ -1,4 +1,5 @@
-import {Dimensions, Image} from 'react-native';
+import React from 'react';
+import {Dimensions, Image, ImageStyle, StyleProp} from 'react-native';
 
 import {Post} from '@domain';
 
@@ -8,10 +9,13 @@ export function PostImage({imageURL}: Props) {
     <Image
       source={{uri: imageURL}}
       resizeMode="cover"
-      style={{
-        width: Dimensions.get('screen').width,
-        height: 300,
-      }}
+      style={$imageComponentStyle}
     />
   );
 }
+
+const $imageComponentStyle: StyleProp<ImageStyle> = {
+  width: Dimensions.get('screen').width,
+  height: 300,
+  marginHorizontal: -24,
+};
