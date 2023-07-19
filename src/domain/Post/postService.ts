@@ -1,5 +1,5 @@
-import {postApi} from './postAPI';
-import {Post} from './types';
+import {postApi} from './postApi';
+import {Post} from './postTypes';
 
 async function getList(): Promise<Post[]> {
   const postList = await postApi.getList();

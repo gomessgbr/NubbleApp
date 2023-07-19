@@ -1,11 +1,19 @@
-import {postListMock} from './postListMock';
-import {Post} from './types';
+import {PageAPI} from '@api';
 
-async function getList(): Promise<Post[]> {
-  await new Promise(resolve =>
-    setTimeout(() => resolve('carregando...'), 2000),
-  );
-  return postListMock;
+import {PostAPI} from './postTypes';
+
+async function getList(): Promise<PageAPI<PostAPI>> {
+  let response = await fetch('http://127.0.0.1:3333/user/post', {
+    method: 'GET',
+    headers: {
+      Authorization:
+        'Bearer Ng.Yw2c6gVCPAXYev6NJsc28yTBimdFITgWA4453pdAT3pBbsOVHAb8MExuf7fJ',
+    },
+  });
+
+  let data: PageAPI<PostAPI> = await response.json();
+
+  return data;
 }
 
 export const postApi = {
