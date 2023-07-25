@@ -1,19 +1,11 @@
-import {PageAPI} from '@api';
+import {PageAPI, api} from '@api';
 
 import {PostAPI} from './postTypes';
 
 async function getList(): Promise<PageAPI<PostAPI>> {
-  let response = await fetch('http://127.0.0.1:3333/user/post', {
-    method: 'GET',
-    headers: {
-      Authorization:
-        'Bearer Ng.Yw2c6gVCPAXYev6NJsc28yTBimdFITgWA4453pdAT3pBbsOVHAb8MExuf7fJ',
-    },
-  });
+  const response = await api.get<PageAPI<PostAPI>>('user/post');
 
-  let data: PageAPI<PostAPI> = await response.json();
-
-  return data;
+  return response.data;
 }
 
 export const postApi = {
