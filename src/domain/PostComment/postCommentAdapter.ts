@@ -5,7 +5,6 @@ function toPostComment(postCommentAPI: PostCommentAPI): PostComment {
     id: postCommentAPI.id,
     message: postCommentAPI.message,
     createdAt: postCommentAPI.created_at,
-
     author: {
       id: postCommentAPI.user.id,
       name: postCommentAPI.user.full_name,
