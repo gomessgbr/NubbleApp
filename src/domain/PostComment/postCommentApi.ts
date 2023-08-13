@@ -1,12 +1,12 @@
 import {PageAPI, PageParams, api} from '@api';
 
-import {PostComment} from './postCommentTypes';
+import {PostCommentAPI} from './postCommentTypes';
 
 async function getList(
   post_id: number,
   pageParams?: PageParams,
-): Promise<PageAPI<PostComment>> {
-  const response = await api.get<PageAPI<PostComment>>('user/post_comment', {
+): Promise<PageAPI<PostCommentAPI>> {
+  const response = await api.get<PageAPI<PostCommentAPI>>('user/post_comment', {
     params: {
       post_id,
       ...pageParams,
