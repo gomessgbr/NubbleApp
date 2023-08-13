@@ -18,7 +18,7 @@ import {HomeHeader} from './components/HomeHeader';
 
 export function HomeScreen({}: AppTabScreenProps<'HomeScreen'>) {
   const {
-    data: postList,
+    list: postList,
     error,
     loading,
     refresh,
@@ -49,6 +49,7 @@ export function HomeScreen({}: AppTabScreenProps<'HomeScreen'>) {
         ListEmptyComponent={
           <HomeEmpty refetch={refresh} error={error} loading={loading} />
         }
+        // eslint-disable-next-line react-native/no-inline-styles
         contentContainerStyle={{flex: postList.length === 0 ? 1 : undefined}}
       />
     </Screen>
