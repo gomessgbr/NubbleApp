@@ -20,6 +20,7 @@ export function Screen({
   canGoBack = false,
   scrollable = false,
   style,
+  title,
   ...boxProps
 }: ScreenProps) {
   const {bottom, top} = useAppSafeArea();
@@ -41,11 +42,17 @@ export function Screen({
             <TouchableOpacityBox
               onPress={navigation.goBack}
               mb="s24"
-              flexDirection="row">
+              flexDirection="row"
+              alignItems="center"
+              justifyContent="space-between">
               <Icon name="arrowLeft" color="primary" />
-              <Text preset="paragraphMedium" semiBold ml="s8">
-                Voltar
-              </Text>
+              {!title && (
+                <Text preset="paragraphMedium" semiBold ml="s8">
+                  Voltar
+                </Text>
+              )}
+              {title && <Text preset="headingSmall">{title}</Text>}
+              {title && <Box width={20} />}
             </TouchableOpacityBox>
           )}
           {children}
