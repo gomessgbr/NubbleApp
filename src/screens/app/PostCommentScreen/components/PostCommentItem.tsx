@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {PostComment} from '@domain';
-import {dateUtils} from '@utils';
 
 import {Box, ProfileAvatar, Text} from '@components';
 
@@ -18,8 +17,7 @@ export function PostCommentItem({postComment}: Props) {
           {postComment.author.userName}
         </Text>
         <Text preset="paragraphSmall" color="gray1">
-          {postComment.message} -{' '}
-          {dateUtils.formatRelative(postComment.createdAt)}
+          {postComment.message} - {postComment.createAtRelative}
         </Text>
       </Box>
     </Box>
