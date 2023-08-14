@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {FlatList, ListRenderItemInfo} from 'react-native';
 
 import {PostComment, usePostCommentList} from '@domain';
 
-import {Screen} from '@components';
+import {Box, Screen, TextMessage} from '@components';
 import {useAppSafeArea} from '@hooks';
 import {AppScreenProps} from '@routes';
 
@@ -14,6 +14,7 @@ export function PostCommentScreen({
 }: AppScreenProps<'PostCommentScreen'>) {
   const postId = route.params.postId;
   const {list, fetchNextPage, hasNextPage} = usePostCommentList(postId);
+  const [message, setMessage] = useState('');
 
   const {bottom} = useAppSafeArea();
 
@@ -21,22 +22,31 @@ export function PostCommentScreen({
     return <PostCommentItem postComment={item} />;
   }
 
+  function onPressSend() {}
+
   return (
-    <Screen canGoBack title="Comentários">
-      <FlatList
-        data={list}
-        keyExtractor={item => item.id.toString()}
-        renderItem={renderItem}
-        contentContainerStyle={{paddingBottom: bottom}}
-        ListFooterComponentStyle={{paddingBottom: bottom}}
-        ListFooterComponent={
-          <PostCommentBottom
-            fetchNextPage={fetchNextPage}
-            hasNextPage={hasNextPage}
-          />
-        }
-        showsVerticalScrollIndicator={false}
-      />
+    <Screen flex={1} canGoBack title="Comentários">
+      <Box flex={1} justifyContent="space-between">
+        <FlatList
+          data={list}
+          keyExtractor={item => item.id.toString()}
+          renderItem={renderItem}
+          contentContainerStyle={{paddingBottom: bottom}}
+          ListFooterComponent={
+            <PostCommentBottom
+              fetchNextPage={fetchNextPage}
+              hasNextPage={hasNextPage}
+            />
+          }
+          showsVerticalScrollIndicator={false}
+        />
+        <TextMessage
+          placeholder="Adicione um comentário"
+          value={message}
+          onChangeText={setMessage}
+          onPressSend={onPressSend}
+        />
+      </Box>
     </Screen>
   );
 }
