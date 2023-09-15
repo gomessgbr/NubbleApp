@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Dimensions} from 'react-native';
+
+import {useToast} from '@services';
 
 import {$shadowProps} from '@theme';
 
@@ -10,6 +12,18 @@ import {Text} from '../Text/Text';
 const MAX_WIDTH = Dimensions.get('screen').width * 0.9;
 
 export function Toast() {
+  const {toast, hiddenToast} = useToast();
+
+  useEffect(() => {
+    setTimeout(() => {
+      hiddenToast();
+    }, 2000);
+  }, [hiddenToast, toast]);
+
+  if (!toast) {
+    return null;
+  }
+
   return (
     <Box top={100} {...$boxStyle}>
       <Icon color="success" name="checkRound" />
@@ -19,8 +33,7 @@ export function Toast() {
         marginLeft="s16"
         preset="paragraphMedium"
         bold>
-        Toast Component Toast Component Toast Component Toast Component
-        ASYGFIAYGFIYASG
+        {toast?.message}
       </Text>
     </Box>
   );
