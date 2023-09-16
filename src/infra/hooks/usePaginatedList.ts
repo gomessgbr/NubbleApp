@@ -2,9 +2,18 @@ import {useEffect, useState} from 'react';
 
 import {Page} from '@types';
 
+export interface UsePaginatedListResult<TData> {
+  list: TData[];
+  isError: boolean | null;
+  isLoading: boolean;
+  refresh: () => void;
+  fetchNextPage: () => void;
+  hasNextPage: boolean;
+}
+
 export function usePaginatedList<Data>(
   getList: (page: number) => Promise<Page<Data>>,
-) {
+): UsePaginatedListResult<Data> {
   const [list, setList] = useState<Data[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<boolean | null>(null);
@@ -55,8 +64,8 @@ export function usePaginatedList<Data>(
 
   return {
     list,
-    error,
-    loading,
+    isError: error,
+    isLoading: loading,
     refresh: fetchInitialData,
     fetchNextPage,
     hasNextPage,
