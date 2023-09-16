@@ -19,6 +19,7 @@ export function ToastProvider({children}: PropsWithChildren<{}>) {
     setToast(null);
   }
   return (
+    // eslint-disable-next-line react/react-in-jsx-scope
     <ToastContext.Provider value={{toast, showToast, hideToast: hideToast}}>
       {children}
     </ToastContext.Provider>
