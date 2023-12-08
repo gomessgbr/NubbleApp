@@ -1,4 +1,5 @@
-import {asyncStorage} from './implementation/asyncStorage';
+// import {asyncStorage} from './implementation/asyncStorage';
+// import {MMKVStorage} from './implementation/MMKVStorage';
 
 export interface Storage {
   getItem: <T = unknown>(key: string) => Promise<T | null>;
@@ -6,4 +7,8 @@ export interface Storage {
   removeItem: (key: string) => Promise<void>;
 }
 
-export let storage: Storage = asyncStorage;
+export let storage: Storage;
+
+export function initializeStorage(storageImpl: Storage) {
+  storage = storageImpl;
+}
