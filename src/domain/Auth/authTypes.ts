@@ -22,7 +22,15 @@ export interface SignInData {
 export interface SignUpDataAPI {
   firstName: string;
   lastName: string;
-  userName: string;
+  username: string;
+  email: string;
+  password: string;
+}
+
+export interface SignUpData {
+  firstName: string;
+  lastName: string;
+  username: string;
   email: string;
   password: string;
 }
