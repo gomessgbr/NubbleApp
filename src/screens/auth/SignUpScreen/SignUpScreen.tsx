@@ -52,13 +52,6 @@ export function SignUpScreen({}: AuthScreenProps<'SignUpScreen'>) {
     signUp(formValues);
   }
   const userNameValidation = useAsyncValidation({watch, getFieldState});
-  // const username = watch('username');
-  // const usernameState = getFieldState('username');
-  // const usernameIsValid = !usernameState.invalid && usernameState.isDirty;
-  // const usernameQuery = useAuthIsUsernameAvailable({
-  //   username,
-  //   enabled: usernameIsValid,
-  // });
 
   return (
     <Screen canGoBack scrollable>
