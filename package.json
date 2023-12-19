@@ -10,7 +10,8 @@
     "start:reset-cache": "react-native start --reset-cache",
     "test": "jest",
     "prepare": "husky install",
-    "art:3333": "adb reverse tcp:3333 tcp:3333"
+    "art:3333": "adb reverse tcp:3333 tcp:3333",
+    "androidpass": "adb shell input text"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.1",

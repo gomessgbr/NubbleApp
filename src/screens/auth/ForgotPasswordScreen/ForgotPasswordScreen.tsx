@@ -1,36 +1,44 @@
 import React from 'react';
 
+import {useAuthRequestNewPassword} from '@domain';
 import {zodResolver} from '@hookform/resolvers/zod';
+import {useToastService} from '@services';
 import {useForm} from 'react-hook-form';
 
 import {Button, FormTextInput, Screen, Text} from '@components';
 import {useResetNavigationSuccess} from '@hooks';
-import {AuthScreenProps} from '@routes';
+import {AuthScreenProps, AuthStackParamList} from '@routes';
 
 import {
   ForgotPasswordSchema,
   forgotPasswordSchema,
 } from './forgotPasswordSchema';
 
+const resetParam: AuthStackParamList['SuccessScreen'] = {
+  title: `Enviamos as instruções ${'\n'}para seu e-mail`,
+  description: 'Clique no link enviado no seu e-mail para recuperar sua senha',
+  icon: {
+    name: 'messageRound',
+    color: 'primary',
+  },
+};
+
 export function ForgotPasswordScreen({}: AuthScreenProps<'ForgotPasswordScreen'>) {
   const {reset} = useResetNavigationSuccess();
-  const {control, formState} = useForm<ForgotPasswordSchema>({
+  const {showToast} = useToastService();
+  const {requestNewPassword, isLoading} = useAuthRequestNewPassword({
+    onSuccess: () => reset(resetParam),
+    onError: message => showToast({message, type: 'error'}),
+  });
+  const {control, formState, handleSubmit} = useForm<ForgotPasswordSchema>({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: {
       email: '',
     },
     mode: 'onChange',
   });
-  function submitForm() {
-    reset({
-      title: `Enviamos as instruções ${'\n'}para o seu  e-mail`,
-      description:
-        'Click no link enviado no seu e-mail para recuperar sua conta',
-      icon: {
-        name: 'messageRound',
-        color: 'primary',
-      },
-    });
+  function submitForm(values: ForgotPasswordSchema) {
+    requestNewPassword(values.email);
   }
   return (
     <Screen canGoBack>
@@ -50,9 +58,10 @@ export function ForgotPasswordScreen({}: AuthScreenProps<'ForgotPasswordScreen'>
       />
 
       <Button
+        loading={isLoading}
         disabled={!formState.isValid}
         title="Recuperar Senha"
-        onPress={submitForm}
+        onPress={handleSubmit(submitForm)}
       />
     </Screen>
   );
