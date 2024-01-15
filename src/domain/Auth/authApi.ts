@@ -52,9 +52,10 @@ async function isEmailAvailable(params: {
 async function forgotPassword(
   params: ForgotPasswordParam,
 ): Promise<{message: string}> {
-  const response = await api.post<{message: string}>('forgot-password', {
+  const response = await api.post<{message: string}>('forgot-password', null, {
     params,
   });
+
   return response.data;
 }
 
