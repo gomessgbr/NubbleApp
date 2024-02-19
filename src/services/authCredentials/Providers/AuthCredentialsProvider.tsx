@@ -1,8 +1,7 @@
 import React, {createContext, useEffect, useState} from 'react';
 
-import {api} from '@api';
+import {registerInterceptor} from '@api';
 import {AuthCredentials, authService} from '@domain';
-import {authApi} from 'src/domain/Auth/authApi';
 
 import {authCredentialsStorage} from '../authCredentialsStorage';
 import {AuthCredentialsService} from '../authCredentialsTypes';
@@ -27,38 +26,14 @@ export function AuthCredentialsProvider({
   }, []);
 
   useEffect(() => {
-    const interceptor = api.interceptors.response.use(
-      response => response,
-      async responseError => {
-        const failedRequest = responseError.config;
-        const hasNotRefreshToken = !authCredentials?.refreshToken;
-        const isRefreshTokenRequest =
-          authApi.isRefreshTokenRequest(failedRequest);
-
-        if (responseError.response.status === 401) {
-          if (
-            hasNotRefreshToken ||
-            isRefreshTokenRequest ||
-            failedRequest.send
-          ) {
-            removeCredentials();
-            return Promise.reject(responseError);
-          }
-
-          failedRequest.send = true;
-          const newAuthCredentials =
-            await authService.authenticateByRefreshToken(
-              authCredentials?.refreshToken,
-            );
-          saveCredentials(newAuthCredentials);
-          failedRequest.headers.Authorization = `Bearer ${newAuthCredentials.token}`;
-          return api(failedRequest);
-        }
-      },
-    );
+    const interceptor = registerInterceptor({
+      authCredentials,
+      removeCredentials,
+      saveCredentials,
+    });
     // remove listener when the component is unmounted
-    return () => api.interceptors.response.eject(interceptor);
-  }, [authCredentials?.refreshToken]);
+    return interceptor;
+  }, [authCredentials]);
 
   async function startAuthCredentials() {
     try {
