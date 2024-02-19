@@ -29,13 +29,25 @@ export function AuthCredentialsProvider({
     const interceptor = api.interceptors.response.use(
       response => response,
       async responseError => {
-        const status = responseError.response.status;
-        console.log(status);
+        if (responseError.response.status === 401) {
+          if (!authCredentials?.refreshToken) {
+            removeCredentials();
+            return Promise.reject(responseError);
+          }
+          const failedRequest = responseError.config;
+          const newAuthCredentials =
+            await authService.authenticateByRefreshToken(
+              authCredentials?.refreshToken,
+            );
+          saveCredentials(newAuthCredentials);
+          failedRequest.headers.Authorization = `Bearer ${newAuthCredentials.token}`;
+          return api(failedRequest);
+        }
       },
     );
     // remove listener when the component is unmounted
     return () => api.interceptors.response.eject(interceptor);
-  }, []);
+  }, [authCredentials?.refreshToken]);
 
   async function startAuthCredentials() {
     try {
