@@ -1,7 +1,22 @@
-import {stringsUtils} from '../stringsUtils';
+import {stringsUtils} from '@utils';
 
-test('capitalizeFirstLetter', () => {
-  // escrever teste
-  const name = stringsUtils.capitalizeFirstLetter('Ana Maria');
-  expect(name).toBe('Ana Maria');
+describe('stringsUtils', () => {
+  describe('capitalizeFirstLetter', () => {
+    it('should capitalize the first letter of each word', () => {
+      expect(stringsUtils.capitalizeFirstLetter('Ana maria')).toBe('Ana Maria');
+      expect(stringsUtils.capitalizeFirstLetter('ANA MARIA')).toBe('Ana Maria');
+      expect(stringsUtils.capitalizeFirstLetter('maria')).toBe('Maria');
+      expect(stringsUtils.capitalizeFirstLetter('Maria')).toBe('Maria');
+      expect(stringsUtils.capitalizeFirstLetter('ana maria')).toBe('Ana Maria');
+    });
+
+    it('should remove leading/trailing spaces', () => {
+      expect(stringsUtils.capitalizeFirstLetter(' Ana maria')).toBe(
+        'Ana Maria',
+      );
+      expect(stringsUtils.capitalizeFirstLetter('Ana maria ')).toBe(
+        'Ana Maria',
+      );
+    });
+  });
 });
