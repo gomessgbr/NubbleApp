@@ -1,14 +1,17 @@
 import React from 'react';
 
-import {render} from 'test-utils';
+import {render, fireEvent} from 'test-utils';
 
 import {Button} from '../Button';
 
 describe('<Button />', () => {
-  it('the component rendered', () => {
-    render(<Button title="button title" />);
-  });
-  it('should shows loading indicator', () => {
-    render(<Button title="button title" />);
+  it('calls the onPress function when is pressed ', () => {
+    const mockedOnPress = jest.fn();
+    const {getByText} = render(
+      <Button title="button title" onPress={mockedOnPress} />,
+    );
+    const titleElement = getByText(/button title/i);
+    fireEvent.press(titleElement);
+    expect(mockedOnPress).toHaveBeenCalled();
   });
 });
