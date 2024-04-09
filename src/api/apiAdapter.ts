@@ -1,8 +1,8 @@
-import {MetaDatePage} from '@types';
+import {MetaDataPage} from '@types';
 
 import {MetaDataPageAPI} from './apiTypes';
 
-function toMetaDataPage(meta: MetaDataPageAPI): MetaDatePage {
+function toMetaDataPage(meta: MetaDataPageAPI): MetaDataPage {
   return {
     total: meta.total,
     perPage: meta.per_page,
