@@ -1,4 +1,4 @@
-export interface MetaDatePage {
+export interface MetaDataPage {
   total: number;
   perPage: number;
   currentPage: number;
@@ -9,6 +9,6 @@ export interface MetaDatePage {
 }
 
 export interface Page<Data> {
-  meta: MetaDatePage;
+  meta: MetaDataPage;
   data: Data[];
 }
