@@ -2,7 +2,7 @@ import {AuthCredentials, authService} from '@domain';
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: 'http://127.0.0.1:59282/',
+  baseURL: 'http://127.0.0.1:56289/',
 });
 
 type InterceptorProps = {
