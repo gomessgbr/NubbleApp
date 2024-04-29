@@ -52,7 +52,8 @@ export function Toast() {
         position: 'absolute',
         alignSelf: 'center',
         opacity: fadeAnim,
-      }}>
+      }}
+      testID={'toast-message'}>
       <ToastContent toast={toast} />
     </Animated.View>
   );
