@@ -8,9 +8,10 @@ import {ScreenProps} from '../Screen';
 
 const ICON_SIZE = 20;
 
-type Props = Pick<ScreenProps, 'title' | 'canGoBack'>;
-export function ScreenHeader({canGoBack, title}: Props) {
+type Props = Pick<ScreenProps, 'title' | 'canGoBack' | 'HeaderComponent'>;
+export function ScreenHeader({canGoBack, title, HeaderComponent}: Props) {
   const navigation = useNavigation();
+  const showBackLabel = !title && !HeaderComponent;
   return (
     <Box
       flexDirection="row"
@@ -23,13 +24,14 @@ export function ScreenHeader({canGoBack, title}: Props) {
           flexDirection="row"
           alignItems="center">
           <Icon size={ICON_SIZE} name="arrowLeft" color="primary" />
-          {!title && (
+          {showBackLabel && (
             <Text preset="paragraphMedium" semiBold ml="s8">
               Voltar
             </Text>
           )}
         </TouchableOpacityBox>
       )}
+      {HeaderComponent}
       {title && <Text preset="headingSmall">{title}</Text>}
       {title && <Box width={ICON_SIZE} />}
     </Box>
