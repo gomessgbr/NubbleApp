@@ -1,11 +1,12 @@
 import React, {ReactElement} from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
+import {AuthCredentialsProvider} from '@services';
 import {ThemeProvider} from '@shopify/restyle';
 import {
   QueryClient,
-  QueryClientConfig,
   QueryClientProvider,
+  QueryClientConfig,
 } from '@tanstack/react-query';
 import {
   RenderOptions,
@@ -14,6 +15,7 @@ import {
   RenderHookOptions,
 } from '@testing-library/react-native';
 
+import {Toast} from '@components';
 import {theme} from '@theme';
 
 const queryClientConfig: QueryClientConfig = {
@@ -48,15 +50,25 @@ export const wrapAllProviders = () => {
   );
 };
 
+function customRender<T = unknown>(
+  component: ReactElement<T>,
+  options?: Omit<RenderOptions, 'wrapper'>,
+) {
+  return render(component, {wrapper: wrapAllProviders(), ...options});
+}
+
 export const wrapScreenProviders = () => {
   const queryClient = new QueryClient(queryClientConfig);
 
   return ({children}: {children: React.ReactNode}) => (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
-        <NavigationContainer>{children} </NavigationContainer>
-      </ThemeProvider>
-    </QueryClientProvider>
+    <AuthCredentialsProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={theme}>
+          <NavigationContainer>{children} </NavigationContainer>
+          <Toast />
+        </ThemeProvider>
+      </QueryClientProvider>
+    </AuthCredentialsProvider>
   );
 };
 
@@ -64,14 +76,7 @@ export function renderScreen<T = unknown>(
   component: ReactElement<T>,
   options?: Omit<RenderOptions, 'wrapper'>,
 ) {
-  return render(component, {wrapper: wrapAllProviders(), ...options});
-}
-
-function customRender<T = unknown>(
-  component: ReactElement<T>,
-  options?: Omit<RenderOptions, 'wrapper'>,
-) {
-  return render(component, {wrapper: wrapAllProviders(), ...options});
+  return render(component, {wrapper: wrapScreenProviders(), ...options});
 }
 
 function customRenderHook<Result, Props>(
