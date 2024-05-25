@@ -15,7 +15,7 @@ import {
 
 type ProfileUserProps = {
   user: Pick<User, 'username' | 'profileUrl' | 'id'>;
-  avatarProps?: Omit<Partial<ProfileAvatarProps>, 'imageURL'>;
+  avatarProps?: Omit<Partial<ProfileAvatarProps>, 'imageUrl'>;
   RightComponent?: React.ReactElement;
 } & PressableBoxProps;
 export function ProfileUser({
