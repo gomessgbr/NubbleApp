@@ -1,21 +1,52 @@
 import React, {useState} from 'react';
+import {FlatList, ListRenderItemInfo} from 'react-native';
 
-import {Icon, Screen, Text, TextInput} from '@components';
+import {User, useUserSearch} from '@domain';
+import {useSearchHistoryService} from '@services';
+
+import {Icon, Screen, TextInput, ProfileUser} from '@components';
+import {useDebounce} from '@hooks';
 import {AppScreenProps} from '@routes';
+
+import {SearchHistory} from './components/SearchHistory';
 
 export function SearchScreen({}: AppScreenProps<'SearchScreen'>) {
   const [search, setSearch] = useState('');
+  const debouncedSearch = useDebounce(search);
+  const {addUser} = useSearchHistoryService();
+
+  const {list} = useUserSearch(debouncedSearch);
+
+  function renderItem({item}: ListRenderItemInfo<User>) {
+    return (
+      <ProfileUser
+        onPress={() => addUser(item)}
+        user={item}
+        avatarProps={{size: 48}}
+      />
+    );
+  }
+
   return (
     <Screen
       canGoBack
       HeaderComponent={
         <TextInput
           value={search}
+          placeholder="Digite sua busca"
           onChangeText={setSearch}
           LeftComponent={<Icon color="gray3" name="search" />}
         />
       }>
-      <Text>Search Screen</Text>
+      {search.length === 0 ? (
+        <SearchHistory />
+      ) : (
+        <FlatList
+          data={list}
+          renderItem={renderItem}
+          keyExtractor={item => item.username}
+        />
+      )}
     </Screen>
   );
 }
