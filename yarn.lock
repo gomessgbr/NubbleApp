@@ -3119,10 +3119,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native/typescript-config@npm:0.73.1":
-  version: 0.73.1
-  resolution: "@react-native/typescript-config@npm:0.73.1"
-  checksum: 9b66fe369c26758764e782f876241f51b75101b627659a148b2709e3c0548a314f5e98dfb508a72d038379a9a11eef18f5cc3e20b04d4e28210b0e09edd819fe
+"@react-native/typescript-config@npm:0.74.81":
+  version: 0.74.81
+  resolution: "@react-native/typescript-config@npm:0.74.81"
+  checksum: 8ff757deced1270181e7b9015066b87b178d5a7cc8cd735c5bcc17bae91fec9548900d6d6d0e806a9ca0ec683e898f2a2927b77b5e77548c6826d956e0f23068
   languageName: node
   linkType: hard
 
@@ -3478,6 +3478,16 @@ __metadata:
   dependencies:
     "@types/istanbul-lib-report": "*"
   checksum: f1ad54bc68f37f60b30c7915886b92f86b847033e597f9b34f2415acdbe5ed742fa559a0a40050d74cdba3b6a63c342cac1f3a64dba5b68b66a6941f4abd7903
+  languageName: node
+  linkType: hard
+
+"@types/jest@npm:^29.5.12":
+  version: 29.5.12
+  resolution: "@types/jest@npm:29.5.12"
+  dependencies:
+    expect: ^29.0.0
+    pretty-format: ^29.0.0
+  checksum: 19b1efdeed9d9a60a81edc8226cdeae5af7479e493eaed273e01243891c9651f7b8b4c08fc633a7d0d1d379b091c4179bbaa0807af62542325fd72f2dd17ce1c
   languageName: node
   linkType: hard
 
@@ -3855,7 +3865,7 @@ __metadata:
     "@react-native/babel-preset": 0.74.81
     "@react-native/eslint-config": 0.74.81
     "@react-native/metro-config": 0.74.81
-    "@react-native/typescript-config": 0.73.1
+    "@react-native/typescript-config": 0.74.81
     "@react-navigation/bottom-tabs": ^6.5.8
     "@react-navigation/native": ^6.1.6
     "@react-navigation/native-stack": ^6.9.12
@@ -3864,6 +3874,7 @@ __metadata:
     "@tanstack/react-query": ^4.35.3
     "@testing-library/jest-native": ^5.4.3
     "@testing-library/react-native": ^12.4.3
+    "@types/jest": ^29.5.12
     "@types/lodash": ^4.17.0
     "@types/react": ^18.2.6
     "@types/react-test-renderer": ^18.0.0
@@ -5831,7 +5842,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expect@npm:^29.7.0":
+"expect@npm:^29.0.0, expect@npm:^29.7.0":
   version: 29.7.0
   resolution: "expect@npm:29.7.0"
   dependencies:
@@ -9123,7 +9134,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pretty-format@npm:^29.0.3, pretty-format@npm:^29.7.0":
+"pretty-format@npm:^29.0.0, pretty-format@npm:^29.0.3, pretty-format@npm:^29.7.0":
   version: 29.7.0
   resolution: "pretty-format@npm:29.7.0"
   dependencies:
