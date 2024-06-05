@@ -15,7 +15,7 @@ initializeStorage(MMKVStorage);
 
 const queryClient = new QueryClient();
 
-function App(): JSX.Element {
+function App(): React.JSX.Element {
   return (
     <AuthCredentialsProvider>
       <QueryClientProvider client={queryClient}>

@@ -3119,6 +3119,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native/typescript-config@npm:0.73.1":
+  version: 0.73.1
+  resolution: "@react-native/typescript-config@npm:0.73.1"
+  checksum: 9b66fe369c26758764e782f876241f51b75101b627659a148b2709e3c0548a314f5e98dfb508a72d038379a9a11eef18f5cc3e20b04d4e28210b0e09edd819fe
+  languageName: node
+  linkType: hard
+
 "@react-native/virtualized-lists@npm:0.74.81":
   version: 0.74.81
   resolution: "@react-native/virtualized-lists@npm:0.74.81"
@@ -3848,6 +3855,7 @@ __metadata:
     "@react-native/babel-preset": 0.74.81
     "@react-native/eslint-config": 0.74.81
     "@react-native/metro-config": 0.74.81
+    "@react-native/typescript-config": 0.73.1
     "@react-navigation/bottom-tabs": ^6.5.8
     "@react-navigation/native": ^6.1.6
     "@react-navigation/native-stack": ^6.9.12
