@@ -1,7 +1,7 @@
 import {AuthCredentials, authService} from '@domain';
 import axios from 'axios';
 
-export const BASE_URL = 'http://127.0.0.1:50980/';
+export const BASE_URL = 'http://127.0.0.1:65519/';
 
 export const api = axios.create({
   baseURL: BASE_URL,
@@ -25,7 +25,6 @@ export function registerInterceptor({
       const hasNotRefreshToken = !authCredentials?.refreshToken;
       const isRefreshTokenRequest =
         authService.isRefreshTokenRequest(failedRequest);
-
       if (responseError.response.status === 401) {
         if (hasNotRefreshToken || isRefreshTokenRequest || failedRequest.send) {
           removeCredentials();
