@@ -1,7 +1,13 @@
 import {AuthCredentials, authService} from '@domain';
 import axios from 'axios';
 
-export const BASE_URL = 'http://127.0.0.1:65519/';
+/**
+ * use your computer network IP Address when running on a real device.
+ *
+ * i.e: `'http://192.168.15.4:65519/'`
+ */
+
+export const BASE_URL = 'http://192.168.15.4:54613';
 
 export const api = axios.create({
   baseURL: BASE_URL,
