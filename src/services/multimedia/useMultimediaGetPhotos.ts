@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react';
 import {QueryKeys} from '@infra';
 import {useInfiniteQuery} from '@tanstack/react-query';
 
-import {multimediaService} from '.';
+import {multimediaService} from './multimediaService';
 
 export function useMultimediaGetPhotos(
   hasPermission: boolean,
