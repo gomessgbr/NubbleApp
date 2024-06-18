@@ -38,8 +38,12 @@ const lightTheme = {
   market: palette.carrotSecondary,
   paragraph: palette.gray1,
 
+  paragraphSecondary: palette.gray1,
+
   iconColor: palette.greenPrimary,
   iconFillColor: palette.grayWhite,
+
+  separator: palette.gray4,
 };
 const darkTheme: typeof lightTheme = {
   ...palette,
@@ -58,10 +62,14 @@ const darkTheme: typeof lightTheme = {
   successLight: palette.greenSuccessLight,
 
   market: palette.carrotSecondary,
-  paragraph: palette.gray1,
+  paragraph: palette.grayWhite,
+
+  paragraphSecondary: palette.gray1,
 
   iconColor: palette.greenPrimaryLight,
   iconFillColor: palette.grayBlack,
+
+  separator: palette.gray3,
 };
 
 export const colors = {palette, lightTheme, darkTheme};
