@@ -3,7 +3,7 @@ import {ImageForUpload} from '@services';
 import {Page} from '@types';
 
 import {postAdapter} from './postAdapter';
-import {postApi} from './postApi';
+import {postApi} from './postAPI';
 import {Post} from './postTypes';
 
 async function getList(page: number): Promise<Page<Post>> {
