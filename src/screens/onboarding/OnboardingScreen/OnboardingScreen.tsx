@@ -9,6 +9,7 @@ import {OnboardingPageItem, onboardingPages} from './onboardingData';
 export function OnboardingScreen() {
   const [pageIndex, setPageIndex] = useState(0);
 
+  // Ref para usar o metódo scrollToIndex da FlatList
   const flatListRef = useRef<FlatList<OnboardingPageItem>>(null);
 
   function onPressNext() {
