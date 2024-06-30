@@ -38,7 +38,7 @@ export function OnboardingScreen() {
     );
   }
   return (
-    <Box flex={1}>
+    <Box flex={1} backgroundColor="background">
       <FlatList
         ref={flatListRef}
         scrollEnabled={false}
