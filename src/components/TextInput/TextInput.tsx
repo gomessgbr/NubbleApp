@@ -29,6 +29,7 @@ export function TextInput({
   containerProps,
   ...rnTextInputProps
 }: TextInputProps) {
+  // eslint-disable-next-line @typescript-eslint/no-shadow
   const {colors} = useAppTheme();
   const inputRef = useRef<RNTextInput>(null);
 

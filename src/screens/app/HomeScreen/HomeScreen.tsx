@@ -41,7 +41,6 @@ export function HomeScreen({}: AppTabScreenProps<'HomeScreen'>) {
         renderItem={renderItem}
         onEndReached={fetchNextPage}
         onEndReachedThreshold={0.1}
-        // eslint-disable-next-line react-native/no-inline-styles
         contentContainerStyle={{flex: postList.length === 0 ? 1 : undefined}}
         refreshControl={
           <RefreshControl refreshing={isLoading} onRefresh={refresh} />

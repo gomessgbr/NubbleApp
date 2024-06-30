@@ -47,7 +47,6 @@ export function Toast() {
 
   return (
     <Animated.View
-      // eslint-disable-next-line react-native/no-inline-styles
       style={{
         position: 'absolute',
         alignSelf: 'center',
