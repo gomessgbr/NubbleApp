@@ -29,8 +29,7 @@ export function TextInput({
   containerProps,
   ...rnTextInputProps
 }: TextInputProps) {
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  const {colors} = useAppTheme();
+  const {colors: _colors} = useAppTheme();
   const inputRef = useRef<RNTextInput>(null);
 
   const $textInputContainer: BoxProps = {
@@ -64,7 +63,7 @@ export function TextInput({
           <RNTextInput
             autoCapitalize="none"
             ref={inputRef}
-            placeholderTextColor={colors.gray2}
+            placeholderTextColor={_colors.gray2}
             style={$textInputStyle}
             {...rnTextInputProps}
           />
