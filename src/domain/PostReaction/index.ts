@@ -1,4 +1,4 @@
 export * from './postReactionService';
 export * from './postReactionsType';
 
-export * from './useCases/useReactTopost';
+export * from './useCases/useReactToPost';
