@@ -21,7 +21,7 @@ export function PostCommentTextMessage({postId}: Props) {
   return (
     <Box paddingHorizontal="s24">
       <TextMessage
-        placeholder="Adicione um comentário"
+        placeholder="Adicione um comentário"
         onPressSend={createComment}
         value={message}
         onChangeText={setMessage}
