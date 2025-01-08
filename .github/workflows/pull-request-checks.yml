@@ -2,7 +2,7 @@ name: Pull Request Checks
 
 on:
   workflow_dispatch:
-    
+
   pull_request:
     branches:
       - main
@@ -25,8 +25,8 @@ jobs:
       - name: Run Lint
         run: yarn lint
 
-       - name: Run TypeScript compiler
-         run: yarn tsc --noEmit
+      - name: Run TypeScript compiler
+        run: yarn tsc --noEmit
 
       - name: Run test
         run: yarn test
