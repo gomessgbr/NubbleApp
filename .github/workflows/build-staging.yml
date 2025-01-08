@@ -1,5 +1,7 @@
-
 name: Build Staging (Android)
+
+env:
+  APK_PATH: android/app/build/outputs/apk/release/app-release.apk
 
 on:
   workflow_dispatch:
@@ -12,7 +14,6 @@ jobs:
       run:
         shell: bash
         working-directory: ./android
-
 
     steps:
       - uses: actions/checkout@v4
@@ -27,3 +28,26 @@ jobs:
         with:
           distribution: 'zulu' # See 'Supported distributions' for available options
           java-version: '17'
+
+      - name: Install Packages
+        run: yarn install
+
+      - name: Decode Keystore
+        run: echo${{ secrets.ANDROID_UPLOAD_KEY_BASE64 }} | base64 -d > app/uploadKey.jks
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Build APK
+        run: ./gradlew assembleRelease
+        env:
+          NUBBLE_STORE_PASSWORD: ${{ secrets.ANDROID_STORE_PASSWORD }}
+          NUBBLE_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          NUBBLE_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+
+      - name: Upload APK to Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release.apk
+          path: ${{env.APK_PATH}}
+          retention-days: 7
