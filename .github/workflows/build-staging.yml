@@ -29,6 +29,9 @@ jobs:
           distribution: 'zulu' # See 'Supported distributions' for available options
           java-version: '17'
 
+      - name: Prepare Yarn 3.6.4
+        run: yarn set version 3.6.4
+
       - name: Install Packages
         run: yarn install
 
