@@ -1,4 +1,4 @@
-package com.nubbleapp
+package br.com.nubbleapp
 import android.content.res.Configuration
 import expo.modules.ApplicationLifecycleDispatcher
 import expo.modules.ReactNativeHostWrapper
@@ -13,7 +13,7 @@ import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.load
 import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.soloader.SoLoader
-import com.nubbleapp.BuildConfig
+import br.com.nubbleapp.BuildConfig
 
 class MainApplication : Application(), ReactApplication {
 
