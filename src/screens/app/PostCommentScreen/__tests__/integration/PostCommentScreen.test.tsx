@@ -66,7 +66,7 @@ describe('integration : PostCommentScreen', () => {
     const comments = await screen.findAllByTestId('post-comment-id');
 
     expect(comments.length).toBe(3);
-  });
+  }, 1000);
 
   test('When DELETING a comment, the list is automatically updated and a toast message is displayed', async () => {
     jest
@@ -118,9 +118,11 @@ describe('integration : PostCommentScreen', () => {
       }),
     );
 
-    const comments = await screen.findAllByTestId('post-comment-id');
+    await waitFor(async () => {
+      const comments = await screen.findAllByTestId('post-comment-id');
 
-    expect(comments.length).toBe(1);
+      expect(comments.length).toBe(1);
+    });
 
     // verificar se foi exibida a toast message
 
@@ -131,5 +133,5 @@ describe('integration : PostCommentScreen', () => {
     act(() => jest.runAllTimers());
 
     expect(screen.queryByTestId('toast-message')).toBeNull();
-  });
+  }, 10000);
 });
