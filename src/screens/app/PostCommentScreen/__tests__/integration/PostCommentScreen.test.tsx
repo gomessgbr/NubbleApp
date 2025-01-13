@@ -104,10 +104,12 @@ describe('integration : PostCommentScreen', () => {
     );
 
     expect(comment).toBeTruthy();
+
     // long press no comentário
     fireEvent(comment, 'longPress');
 
     expect(mockedAlert).toHaveBeenCalled();
+
     // pressionar em "confirmar" no alert
     mockedConfirm && mockedConfirm();
 
@@ -118,11 +120,9 @@ describe('integration : PostCommentScreen', () => {
       }),
     );
 
-    await waitFor(async () => {
-      const comments = await screen.findAllByTestId('post-comment-id');
+    const comments = await screen.findAllByTestId('post-comment-id');
 
-      expect(comments.length).toBe(1);
-    });
+    expect(comments.length).toBe(1);
 
     // verificar se foi exibida a toast message
 
@@ -133,5 +133,5 @@ describe('integration : PostCommentScreen', () => {
     act(() => jest.runAllTimers());
 
     expect(screen.queryByTestId('toast-message')).toBeNull();
-  }, 10000);
+  });
 });
