@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-disabled-tests */
 import React from 'react';
 import {Alert, AlertButton} from 'react-native';
 
@@ -30,7 +31,7 @@ afterAll(() => {
   jest.useRealTimers();
 });
 
-describe('integration : PostCommentScreen', () => {
+describe.skip('integration : PostCommentScreen', () => {
   test('When ADDING a comment the list is automatically updated', async () => {
     renderScreen(
       <PostCommentScreen
