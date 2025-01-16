@@ -1,4 +1,3 @@
-/* eslint-disable jest/no-disabled-tests */
 import React from 'react';
 import {Alert, AlertButton} from 'react-native';
 
@@ -31,7 +30,7 @@ afterAll(() => {
   jest.useRealTimers();
 });
 
-describe.skip('integration : PostCommentScreen', () => {
+describe('integration : PostCommentScreen', () => {
   test('When ADDING a comment the list is automatically updated', async () => {
     renderScreen(
       <PostCommentScreen
@@ -67,7 +66,7 @@ describe.skip('integration : PostCommentScreen', () => {
     const comments = await screen.findAllByTestId('post-comment-id');
 
     expect(comments.length).toBe(3);
-  }, 1000);
+  }, 10000);
 
   test('When DELETING a comment, the list is automatically updated and a toast message is displayed', async () => {
     jest
