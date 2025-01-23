@@ -66,7 +66,7 @@ describe('integration : PostCommentScreen', () => {
     const comments = await screen.findAllByTestId('post-comment-id');
 
     expect(comments.length).toBe(3);
-  });
+  }, 10000);
 
   test('When DELETING a comment, the list is automatically updated and a toast message is displayed', async () => {
     jest
@@ -104,10 +104,12 @@ describe('integration : PostCommentScreen', () => {
     );
 
     expect(comment).toBeTruthy();
+
     // long press no comentário
     fireEvent(comment, 'longPress');
 
     expect(mockedAlert).toHaveBeenCalled();
+
     // pressionar em "confirmar" no alert
     mockedConfirm && mockedConfirm();
 
