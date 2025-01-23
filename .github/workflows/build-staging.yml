@@ -37,7 +37,7 @@ jobs:
         run: yarn install
 
       - name: Decode Keystore
-        run: echo${{ secrets.ANDROID_UPLOAD_KEY_BASE64 }} | base64 -d > app/uploadKey.jks
+        run: echo ${{ secrets.ANDROID_UPLOAD_KEY_BASE64 }} | base64 -d > app/uploadKey.jks
 
       - name: Make gradlew executable
         run: chmod +x ./gradlew
@@ -50,7 +50,7 @@ jobs:
           NUBBLE_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
 
       - name: Decode Google Service Account
-        run: echo${{ secrets.GOOGLE_SERVICE_ACCOUNT_BASE64 }} | base64 -d > google-service-account.json
+        run: echo ${{ secrets.GOOGLE_SERVICE_ACCOUNT_BASE64 }} | base64 -d > google-service-account.json
 
       - name: Upload to Google Play
         run: fastlane upload_bundle_internal
