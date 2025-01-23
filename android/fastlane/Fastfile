@@ -18,8 +18,8 @@ skip_docs
 
 platform :android do
 
-  desc "Submit a new Beta Build to Crashlytics Beta"
-  lane :upload_bundle_internal do
+  desc "Build AAB file and upload to Google Play internal test"
+  lane :build_and_upload_bundle_internal do
     gradle(
       task: "bundle",
       build_type: 'release'
@@ -32,4 +32,13 @@ platform :android do
     )
   end
 
+  desc "Upload a new build to Google Play internal test"
+  lane :upload_bundle_internal do 
+  upload_to_play_store(
+    track: 'internal',
+      skip_upload_apk: true,
+      release_status: 'draft',
+      aab:'app/build/outputs/bundle/release/app-release.aab',
+  )
+  end
 end
