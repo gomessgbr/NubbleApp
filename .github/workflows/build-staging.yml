@@ -46,8 +46,8 @@ jobs:
         run: ./gradlew bundleRelease
         env:
           NUBBLE_STORE_PASSWORD: ${{ secrets.ANDROID_STORE_PASSWORD }}
-          NUBBLE_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
-          NUBBLE_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          NUBBLE_STORE_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          NUBBLE_STORE_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
 
       - name: Decode Google Service Account
         run: echo ${{ secrets.GOOGLE_SERVICE_ACCOUNT_BASE64 }} | base64 -d > google-service-account.json
